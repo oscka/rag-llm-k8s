@@ -2,12 +2,6 @@
 
 # Rag 기반의 llm on k8s
 
-## 목차
-1. 노드 사양
-2. 사전준비 설정
-3. RAG System 및 LLM 모델 배포
-4. streamlit web 배포
-5. 접속 확인 및 테스트
 
 ## 1. 노드 사양
 
@@ -159,7 +153,7 @@ spec:
 PDF 파일 복사:
 
 ```bash
-kubectl cp ../llm-test.pdf pdf-upload-pod:/pdfs/
+kubectl cp ../tr_technology_radar_vol_29_en.pdf pdf-upload-pod:/pdfs/
 ```
 
 ### 3.2 허깅페이스 엑세스용 시크릿 생성
@@ -451,8 +445,6 @@ spec:
     targetPort: 8501
   type: LoadBalancer
 ```
-
-## 5. 접속 확인 및 테스트
 
 RAG 적용 전과 후의 결과를 비교하여 테스트를 진행합니다.
 
