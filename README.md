@@ -62,12 +62,10 @@ data:
       addresses:
       - 192.168.31.61-192.168.31.69 # IP 대역폭
 EOF
-```
 
-metallb config 샘성: 
-```
 kubectl apply -f metallb_config.yaml
 ```
+
 
 ### Docker Registry 설정
 
@@ -130,6 +128,8 @@ spec:
   resources:
     requests:
       storage: 50Gi # pdf 저장소
+
+k apply -f pvc.yaml
 ```
 
 PDF 파일 업로드를 위한 임시 pod 생성:
@@ -151,6 +151,8 @@ spec:
   - name: pdf-storage
     persistentVolumeClaim:
       claimName: pdf-pvc
+
+k apply -f upload.yaml
 ```
 
 PDF 파일 복사:
@@ -347,6 +349,8 @@ spec:
     port: 80
     targetPort: 5001
   type: LoadBalancer
+
+k apply -f ragdeploy.yaml
 ```
 
 ## 4. streamlit web 배포
