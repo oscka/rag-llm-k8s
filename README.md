@@ -62,7 +62,10 @@ data:
       addresses:
       - 192.168.31.61-192.168.31.69 # IP 대역폭
 EOF
+```
 
+metallb config 샘성: 
+```
 kubectl apply -f metallb_config.yaml
 ```
 
