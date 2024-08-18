@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pdf-upload-pod
+spec:
+  containers:
+  - name: upload-container
+    image: busybox
+    command: ["/bin/sh", "-c", "tail -f /dev/null"]
+    volumeMounts:
+    - name: pdf-storage
+      mountPath: /pdfs
+  volumes:
+  - name: pdf-storage
+    persistentVolumeClaim:
+      claimName: pdf-pvc

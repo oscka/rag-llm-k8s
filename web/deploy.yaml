@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit-rag-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streamlit-rag-app
+  template:
+    metadata:
+      labels:
+        app: streamlit-rag-app
+    spec:
+      containers:
+      - name: streamlit-rag-app
+        image: localhost:5003/streamlit-rag-app:v3
+        ports:
+        - containerPort: 8501
+        env:
+        - name: LLM_SERVICE_URL
+          value: "http://192.168.31.61:80"

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llm-app
+  template:
+    metadata:
+      labels:
+        app: llm-app
+    spec:
+      initContainers:
+      - name: download-model
+        image: python:3.9-slim
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: HF_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: hf-token
+              key: HF_TOKEN
+        command:
+        - /bin/sh
+        - -c
+        - |
+          echo "Hugging Face token: $HF_TOKEN"
+          pip install requests huggingface_hub
+          python /app/download_model.py
+        volumeMounts:
+        - name: model-storage
+          mountPath: /models
+        - name: download-script
+          mountPath: /app
+      containers:
+      - name: llm-container
+        image: localhost:5003/all-server:v1
+        ports:
+        - containerPort: 5001
+        volumeMounts:
+        - name: model-storage
+          mountPath: /models
+        - name: pdf-storage
+          mountPath: /pdfs
+      volumes:
+      - name: model-storage
+        persistentVolumeClaim:
+          claimName: llm-model-pvc
+      - name: pdf-storage
+        persistentVolumeClaim:
+          claimName: pdf-pvc
+      - name: download-script
+        configMap:
+          name: download-script-configmap

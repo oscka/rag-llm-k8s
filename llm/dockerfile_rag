@@ -1,0 +1,26 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# 필요한 시스템 패키지 설치
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Python 패키지 설치
+COPY requirements_rag.txt .
+RUN pip install --no-cache-dir -r requirements_rag.txt
+
+# 애플리케이션 코드 복사
+COPY rag.py .
+
+# 모델 및 인덱스를 위한 디렉토리 생성
+RUN mkdir /models
+
+EXPOSE 5001
+
+# HF_TOKEN을 환경 변수로 설정 (빌드 시 --build-arg 옵션 사용)
+ARG HF_TOKEN
+ENV HF_TOKEN=$HF_TOKEN
+ENV MODEL_PATH=/models
+CMD ["python", "rag.py"]

@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: llm-model-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn  # 사용 중인 스토리지 클래스 이름으로 변경하세요
+  resources:
+    requests:
+      storage: 100Gi  # 필요한 저장 공간 크기로 조정하세요
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pdf-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: longhorn  # 사용 중인 스토리지 클래스 이름으로 변경하세요
+  resources:
+    requests:
+      storage: 50Gi  # 필요한 저장 공간 크기로 조정하세요
