@@ -214,7 +214,7 @@ if __name__ == "__main__":
 Configmap 생성:
 
 ```bash
-kubectl create configmap download-script-configmap --from-file=download_model.py -o yaml --dry-run=client | kubectl apply -f -
+kubectl create configmap download-script-configmap --from-file=./llm/download_model.py -o yaml --dry-run=client | kubectl apply -f -
 ```
 
 ### 3.4 Rag-system 생성
@@ -278,7 +278,7 @@ CMD ["python", "rag.py"]
 Docker 이미지 빌드 및 푸시:
 
 ```bash
-docker build --build-arg HF_TOKEN=hf_token -t localhost:5003/llm-server:v1 -f dockerfile_rag .
+docker build --build-arg HF_TOKEN=hf_token -t localhost:5003/llm-server:v1 -f ./llm/dockerfile_rag .
 docker push localhost:5003/llm-server:v1
 ```
 
@@ -408,7 +408,7 @@ CMD ["streamlit", "run", "app.py"]
 Docker 이미지 빌드 및 푸시:
 
 ```bash
-docker build -t localhost:5003/streamlit-rag-app:v1 .
+docker build -t localhost:5003/streamlit-rag-app:v1 -f ./web/Dockerfile .
 docker push localhost:5003/streamlit-rag-app:v1
 ```
 
