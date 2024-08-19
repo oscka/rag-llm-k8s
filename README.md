@@ -132,7 +132,7 @@ spec:
     requests:
       storage: 50Gi # pdf 저장소
 
-k apply -f pvc.yaml
+kubectl apply -f ./llm/pvc.yaml
 ```
 
 PDF 파일 업로드를 위한 임시 pod 생성:
@@ -155,7 +155,7 @@ spec:
     persistentVolumeClaim:
       claimName: pdf-pvc
 
-k apply -f upload.yaml
+kubectl apply -f ./llm/upload.yaml
 ```
 
 PDF 파일 복사:
@@ -169,7 +169,7 @@ kubectl cp ../tr_technology_radar_vol_29_en.pdf pdf-upload-pod:/pdfs/
 ```bash
 $ kubectl create secret generic hf-token --from-literal=HF_TOKEN=hf_token
 or 
-$ kubectl create -f secret.yaml
+$ kubectl create -f ./llm/secret.yaml
 ```
 
 ### 3.3 모델 다운로드용 Configmap 생성
@@ -355,7 +355,7 @@ spec:
     targetPort: 5001
   type: LoadBalancer
 
-k apply -f ragdeploy.yaml
+kubectl apply -f ./llm/ragdeploy.yaml
 ```
 
 ## 4. streamlit web 배포
@@ -438,7 +438,9 @@ spec:
         - containerPort: 8501
         env:
         - name: LLM_SERVICE_URL
-          value: "http://192.168.31.61:80"
+          value: "http://192.168.31.61:80" # llm-service 의 external IP 주소 
+
+$ kubectl apply -f ./web/deploy.yaml
 ```
 
 Service 생성:
@@ -456,6 +458,8 @@ spec:
     port: 80
     targetPort: 8501
   type: LoadBalancer
+
+$ kubectl apply -f ./web/service.yaml
 ```
 
 ## 4. 테스트 결과 
