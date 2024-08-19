@@ -456,12 +456,12 @@ spec:
   type: LoadBalancer
 ```
 
-## 4. 테스트 
+## 4. 테스트 결과 
+
+적용 전 
 
 ![적용 전](./pre.png)
 
-![적용 후](./post.png)
+적용 후
 
-https://osc-korea.atlassian.net/wiki/spaces/consulting/pages/1147470144/Rag+llm+on+k8s
-
-테스트 결과는 위 링크에 있습니다 
+![적용 후](./post.png) 
