@@ -167,7 +167,9 @@ kubectl cp ../tr_technology_radar_vol_29_en.pdf pdf-upload-pod:/pdfs/
 ### 3.2 허깅페이스 엑세스용 시크릿 생성
 
 ```bash
-kubectl create secret generic hf-token --from-literal=HF_TOKEN=hf_token
+$ kubectl create secret generic hf-token --from-literal=HF_TOKEN=hf_token
+or 
+$ kubectl create -f secret.yaml
 ```
 
 ### 3.3 모델 다운로드용 Configmap 생성
