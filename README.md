@@ -161,7 +161,7 @@ kubectl apply -f ./llm/upload.yaml
 PDF 파일 복사:
 
 ```bash
-kubectl cp ../tr_technology_radar_vol_29_en.pdf pdf-upload-pod:/pdfs/
+kubectl cp ./tr_technology_radar_vol_29_en.pdf pdf-upload-pod:/pdfs/
 ```
 
 ### 3.2 허깅페이스 엑세스용 시크릿 생성
