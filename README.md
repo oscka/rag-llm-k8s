@@ -170,6 +170,7 @@ kubectl cp ./tr_technology_radar_vol_29_en.pdf pdf-upload-pod:/pdfs/
 # HF_TOKEN=hf_token 실제 토큰을 넣어주세요
 $ kubectl create secret generic hf-token --from-literal=HF_TOKEN=hf_token
 or 
+# ./llm/secret.yaml 에 실제 토큰을 설정 하세요 
 $ kubectl create -f ./llm/secret.yaml
 ```
 
