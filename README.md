@@ -1,4 +1,6 @@
-네, 요청하신 대로 PDF의 내용을 텍스트와 코드 위주로 마크다운 형식으로 정리해드리겠습니다.
+참조 링크 
+https://osc-korea.atlassian.net/wiki/spaces/consulting/pages/1147470144/Rag+llm+on+k8s
+
 
 # Rag 기반의 llm on k8s
 
