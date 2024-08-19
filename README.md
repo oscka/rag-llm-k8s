@@ -1,4 +1,5 @@
 참조 링크 
+
 https://osc-korea.atlassian.net/wiki/spaces/consulting/pages/1147470144/Rag+llm+on+k8s
 
 
@@ -455,6 +456,8 @@ spec:
   type: LoadBalancer
 ```
 
-RAG 적용 전과 후의 결과를 비교하여 테스트를 진행합니다.
+## 4. 테스트 
 
-이상으로 Rag 기반의 llm on k8s 구축 가이드를 마치겠습니다.
+https://osc-korea.atlassian.net/wiki/spaces/consulting/pages/1147470144/Rag+llm+on+k8s
+
+테스트 결과는 위 링크에 있습니다 
