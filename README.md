@@ -167,6 +167,7 @@ kubectl cp ./tr_technology_radar_vol_29_en.pdf pdf-upload-pod:/pdfs/
 ### 3.2 허깅페이스 엑세스용 시크릿 생성
 
 ```bash
+# HF_TOKEN=hf_token 실제 토큰을 넣어주세요
 $ kubectl create secret generic hf-token --from-literal=HF_TOKEN=hf_token
 or 
 $ kubectl create -f ./llm/secret.yaml
@@ -278,6 +279,7 @@ CMD ["python", "rag.py"]
 Docker 이미지 빌드 및 푸시:
 
 ```bash
+# HF_TOKEN=hf_token 실제토큰을 넣어주세요
 docker build --build-arg HF_TOKEN=hf_token -t localhost:5003/llm-server:v1 -f ./llm/dockerfile_rag .
 docker push localhost:5003/llm-server:v1
 ```
